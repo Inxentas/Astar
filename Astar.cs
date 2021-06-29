@@ -20,6 +20,8 @@ public class Astar
     public MapNode endNode;
     public int maxIterations = 1000;
 
+    #region Setup
+
     public void SetMap(Map map)
     {
         this._map = map;
@@ -36,12 +38,22 @@ public class Astar
     {
         endNode = node;
     }
+
+    #endregion
+
+    #region Heuristic
+
     public float Manhattan(MapNode nodeA, MapNode nodeB)
     {
         var x = Mathf.Abs(nodeB.position.x - nodeA.position.x);
         var z = Mathf.Abs(nodeB.position.z - nodeA.position.z);
         return x + z;
     }
+
+    #endregion
+
+    #region Execution
+
     public MapNode GetLowestFInOpenList()
     {
         MapNode lowest = openList[0];
@@ -159,4 +171,12 @@ public class Astar
         }
         return null;
     }
+    public List<MapNode> GetPathBetween(MapNode start, MapNode end)
+    {
+        this.startNode = start;
+        this.endNode = end;
+        return GetPath();
+    }
+
+    #endregion
 }
