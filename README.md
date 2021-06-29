@@ -12,5 +12,14 @@ Both the Map as the Astar classes need to be instantiated first. Astar encapsula
 Once the Astar / Map has been instantiated, paths can be requested like this:
 
     astar.SetStart(map.GetNodeAtIndex(0));
-    astar.SetEnd(map.GetNodeAtIndex(map.nodes.Length -2));
+    astar.SetEnd(map.GetNodeAtIndex(10));
     astar.GetPath();
+
+## Updating the map in realtime
+You can update the map in realtime by generating new data (MapNodes) first.
+
+    map.GenerateMapData(10, 10, 1);
+    
+This will automaticly connect all neighbors of all MapNodes. Note that these connects are also made to non-walkable nodes. Setting the walkable status can also be done in realtime to affect future paths. Keep in mind a Map has (width x depth) amount of MapNodes in total.
+
+    map.GetNodeAtIndex(1).walkable = false;
