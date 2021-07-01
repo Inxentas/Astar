@@ -95,6 +95,12 @@ public class Astar
 
         int safe = maxIterations;
 
+        // Reset all node path parents
+        foreach (MapNode node in map.nodes)
+        {
+            node.parentNode = null;
+        }
+
         // Debug.Log("GetPath from: " + startNode.name + " to " + endNode.name);
 
         // start the open and closed Lists and
